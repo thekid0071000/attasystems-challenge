@@ -1,0 +1,77 @@
+body {
+}
+
+.RegisterForm {
+  position: fixed;
+  padding: 0;
+  margin: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.RegTitle {
+  font-family: "Dancing Script", cursive;
+  font-size: 4.5rem;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+}
+
+.UserNameRegister {
+  width: 20rem;
+  height: 2rem;
+  border: 3px solid gray;
+  margin-bottom: 0.8rem;
+  font-size: 1.1rem;
+}
+
+.PasswordRegister {
+  width: 20rem;
+  height: 2rem;
+  border: 3px solid gray;
+  font-size: 1.1rem;
+  margin-bottom: 0.8rem;
+}
+
+.PasswordConfirmInput {
+  width: 20rem;
+  height: 2rem;
+  border: 3px solid gray;
+  font-size: 1.1rem;
+}
+
+.RegisterForm > label {
+  font-size: 1.5rem;
+  margin-bottom: 0.8rem;
+  width: 20rem;
+  text-align: left;
+}
+
+.RegisterButton {
+  width: 10rem;
+  height: 3rem;
+  font-size: 1rem;
+  background-color: #4a90e2;
+  color: white;
+  font-size: 1.3rem;
+  border-style: none;
+  margin-top: 2rem;
+  border-radius: 1px;
+}
+
+.RegisterButton:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.LoginH2 {
+  font-weight: 500;
+}
+
+.LoginLink {
+  font-size: 1.7rem;
+}

@@ -1,42 +1,61 @@
 import { useState, useEffect } from "react";
 import callApi from "../../utils/methods";
 import { Link, useNavigate } from "react-router-dom";
+import "./form.css";
 
 export default function Form() {
+  // Create state variables for the username and password.
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
+
+  // Create a navigate variable that will be used to redirect the user to the dashboard.
   const navigate = useNavigate();
 
+  // Testing purposes. Monitoring the live change of the input.
   useEffect(() => {
     console.log(username, password);
   }, [username, password]);
 
+  // Form onSubmit function.
   async function handleSubmit(event) {
+    // Prevent default functionality. This prevents the page being refreshed after the form is submitted and the user details will not be shown in the URL.
     event.preventDefault();
-    const res = await callApi("login", "GET");
+
+    // Gets the users from the "login" endpoint of the API, using the callApi method from methods.js.
+    const res = await callApi("user", "GET");
     const body = await res.json();
 
+    // Filter through the users and check whether the input matches the registered credentials inside the API.
     const user = body.filter((data) => {
       if (data.username === username && data.password === password) {
+        // If there is a match, return it.
         return { username: data.username, password: data.password };
       }
     });
 
+    // Check if a user has been found. If not, display a message to the user that the username or password is incorrect,
     if (user.length === 0) {
       alert("Incorrect username or password!");
     } else {
+      // If a user has been found, navigate to that dashboard.
       navigate("/dashboard");
     }
   }
 
+  // This is the HTML for the form. It contains two inputs, one for the username and the other for the password.
+  // Each input has an onChange method that will update the state variables, and a value property that will store the updated value of each input.
+  // At the bottom there is a Link tag to the Register page, if the user does not have an account and chooses to register on the website.
   return (
     <form
+      className="Form"
       onSubmit={(event) => {
         handleSubmit(event);
       }}
     >
-      <label htmlFor="username">User name:</label>
+      <h1 className="Title">Kite</h1>
+      <label htmlFor="username">Username:</label>
       <input
+        className="UserNameInput"
         type="text"
         placeholder="User Name"
         name="username"
@@ -47,6 +66,7 @@ export default function Form() {
       />
       <label htmlFor="password">Password:</label>
       <input
+        className="PasswordInput"
         type="password"
         placeholder="Password"
         name="password"
@@ -55,10 +75,12 @@ export default function Form() {
         }}
         value={password}
       />
-      <button>Login</button>
+      <button className="LoginButton">Login</button>
 
-      <h2>Not registered yet? Click here: </h2>
-      <Link to={"/register"}>Register</Link>
+      <h2 className="RegisterH2">Not registered yet? Click here: </h2>
+      <Link to={"/register"} className="RegisterLink">
+        Register
+      </Link>
     </form>
   );
 }
