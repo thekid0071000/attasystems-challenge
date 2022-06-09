@@ -1,0 +1,14 @@
+.LocationsTable {
+  text-align: left;
+  width: 80%;
+  line-height: 1.8rem;
+  border-spacing: 0;
+}
+
+.LocationsTable > tr > th {
+  background-color: gray;
+}
+
+.LocationsTable > tr > td {
+  font-weight: 500;
+}
