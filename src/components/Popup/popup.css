@@ -1,0 +1,41 @@
+.FavButtonAdd {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #ff3b30;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.FavButtonAdd:hover {
+  cursor: pointer;
+}
+.FavButtonAdd:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}
+
+.Star {
+  width: 1.5rem;
+  height: 1.5rem;
+}
+
+.FavButtonRemove {
+  width: 100%;
+  height: 2.5rem;
+  background-color: #e8b100;
+  color: white;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  margin-bottom: 1.5rem;
+}
+
+.FavButtonRemove:hover {
+  cursor: pointer;
+}
+
+.FavButtonRemove:active {
+  box-shadow: inset 5px 5px 10px -3px rgba(0, 0, 0, 0.7);
+}

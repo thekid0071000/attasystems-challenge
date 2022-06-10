@@ -5,8 +5,10 @@ import Table from "../../components/Table/Table";
 import Map from "../../components/Map/Map";
 
 export default function Dashboard() {
+  // Create a variable in state that will store all the locations from the API.
   const [locations, setLocations] = useState([]);
 
+  // Get all the locations from the API on the first render of the page and store them in state.
   useEffect(() => {
     async function getLocations() {
       const res = await callApi("spot", "GET");
@@ -17,6 +19,7 @@ export default function Dashboard() {
     getLocations();
   }, []);
 
+  // Return a Map and Table component that will display all the locations.
   return (
     <div className="GoogleMap">
       <Map locations={locations} />

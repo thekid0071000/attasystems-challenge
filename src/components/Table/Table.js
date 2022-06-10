@@ -3,6 +3,8 @@ import "./table.css";
 import { nanoid } from "nanoid";
 
 export default function Table(props) {
+  // Displays a table containing information about all locations, received as props from the Dashboard.
+  // Conditionally color each row depending on whether the index is an odd or even number for better readability.
   const mapLocations = props.elements.map((location, index) => {
     return (
       <tr
@@ -22,6 +24,8 @@ export default function Table(props) {
       </tr>
     );
   });
+
+  // Return a table header with titles for each piece of information.
   return (
     <table className="LocationsTable">
       <tr>
