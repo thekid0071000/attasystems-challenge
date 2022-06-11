@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 import callApi from "../../utils/methods";
 import { Link, useNavigate } from "react-router-dom";
 import "./form.css";
@@ -11,17 +11,17 @@ export default function Form() {
   // Create state variables for the username and password.
   const [username, setUserName] = useState("");
   const [password, setPassword] = useState("");
-  // Set a match variable in state that will store the username and id of the user that is logging in.
-  const [match, setMatch] = useState("");
 
   // Create a navigate variable that will be used to redirect the user to the dashboard.
   const navigate = useNavigate();
 
-  // Testing purposes. Monitoring the live change of the input.
+  // Prevent a page redirect if the user access token is already in the browser's storage.
+  // (Do not allow users to log out unless they click the "Log Out button.")
   useEffect(() => {
-    console.log(username, password);
-  }, [username, password]);
-
+    if (localStorage.getItem("access_token")) {
+      navigate("/dashboard");
+    }
+  }, []);
   // Form onSubmit function.
   async function handleSubmit(event) {
     // Prevent default functionality. This prevents the page being refreshed after the form is submitted and the user details will not be shown in the URL.
@@ -34,12 +34,6 @@ export default function Form() {
     // Filter through the users and check whether the input matches the registered credentials inside the API.
     const user = body.filter((data) => {
       if (data.username === username && data.password === password) {
-        // Separate the password from the username and id.
-        const { password, ...rest } = data;
-
-        // Store the id and username.
-        setMatch(rest);
-
         // If there is a match, return it.
         return { username: data.username, password: data.password };
       }
@@ -49,11 +43,14 @@ export default function Form() {
     if (user.length === 0) {
       alert("Incorrect username or password!");
     } else {
+      // Separate the password from the rest of the user info.
+      const { password, ...rest } = user[0];
       // Sign (encode) the user object using the secret at the top of the file.
-      const encodedUser = sign(match, secret);
+      const encodedUser = sign(rest, secret);
+
       // Set the user inside local storage.
       localStorage.setItem("access_token", encodedUser);
-      console.log(encodedUser);
+
       // Navigate to that dashboard.
       navigate("/dashboard");
     }

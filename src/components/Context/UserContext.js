@@ -15,13 +15,13 @@ const UserProvider = ({ children }) => {
       // Get the token from localStorage.
       const access_token = localStorage.getItem("access_token");
       // Decode token.
-      const decoded = jwt_decode(access_token);
-      console.log(access_token, decoded);
 
       // If the access token is null, return. If it is not null, set the decoded user.
       if (!access_token) {
         setUser(null);
       } else {
+        const decoded = jwt_decode(access_token);
+
         setUser(decoded);
       }
     }

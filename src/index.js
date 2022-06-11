@@ -6,9 +6,12 @@ import reportWebVitals from "./reportWebVitals";
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+  // The library used to render the google map and its components had an unwanted side effect that React.StrictMode tried to correct, which resulted
+  // in rendering two pop up components when clicking the pins on the map.
+
+  //<React.StrictMode>
+  <App />
+  //</React.StrictMode>
 );
 
 // If you want to start measuring performance in your app, pass a function

@@ -3,6 +3,7 @@ import "./dashboard.css";
 import callApi from "../../utils/methods";
 import Table from "../../components/Table/Table";
 import Map from "../../components/Map/Map";
+import Navbar from "../../components/Navbar/Navbar";
 
 export default function Dashboard() {
   // Create a variable in state that will store all the locations from the API.
@@ -22,6 +23,7 @@ export default function Dashboard() {
   // Return a Map and Table component that will display all the locations.
   return (
     <div className="GoogleMap">
+      <Navbar />
       <Map locations={locations} />
       <h1>Locations</h1>
       <Table elements={locations} />

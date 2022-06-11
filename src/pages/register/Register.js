@@ -1,6 +1,6 @@
 import React from "react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import callApi from "../../utils/methods";
 import "./register.css";
 
@@ -10,11 +10,15 @@ export default function Register() {
   const [password, setPassword] = useState("");
   const [passwordConfirm, setPasswordConfirm] = useState("");
 
-  // Live reading of the inputs. For testing purposes.
-  useEffect(() => {
-    console.log(username, password);
-  }, [username, password]);
+  const navigate = useNavigate();
 
+  // Prevent a page redirect if the user access token is already in the browser's storage.
+  // (Do not allow users to log out unless they click the "Log Out button.")
+  useEffect(() => {
+    if (localStorage.getItem("access_token")) {
+      navigate("/dashboard");
+    }
+  }, []);
   // onSubmit function. Handles user submission to the api.
   async function handleSubmit(event) {
     // Prevent default functionality. This prevents the page being refreshed after the form is submitted and the user details will not be shown in the URL.

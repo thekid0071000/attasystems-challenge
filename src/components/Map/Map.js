@@ -83,7 +83,7 @@ export default function Map(props) {
     const faves = await callApi("favourites", "GET");
     const favesBody = await faves.json();
     setFavoriteLocations(favesBody);
-
+    console.log("Closed!");
     // Set the clickedMarker state to "false".
     setClickedMarker(false);
   }
