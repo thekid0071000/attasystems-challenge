@@ -14,7 +14,6 @@ function App() {
         <div className="App">
           <Routes>
             <Route path={"/form"} element={<Form />} />
-
             <Route
               path={"/dashboard"}
               element={
@@ -24,7 +23,6 @@ function App() {
                 </PrivateRoute>
               }
             />
-
             <Route path={"/register"} element={<Register />} />
             <Route path={"/"} element={<Form />} />
             <Route path={"*"} element={<NotFound />} />

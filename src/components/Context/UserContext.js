@@ -14,14 +14,15 @@ const UserProvider = ({ children }) => {
     if (enabled) {
       // Get the token from localStorage.
       const access_token = localStorage.getItem("access_token");
-      // Decode token.
 
       // If the access token is null, return. If it is not null, set the decoded user.
       if (!access_token) {
         setUser(null);
       } else {
+        // Decode token.
         const decoded = jwt_decode(access_token);
 
+        // Set decoded user.
         setUser(decoded);
       }
     }

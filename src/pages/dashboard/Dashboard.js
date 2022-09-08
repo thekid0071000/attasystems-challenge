@@ -1,4 +1,4 @@
-import { useEffect, useState, useContext } from "react";
+import { useEffect, useState } from "react";
 import "./dashboard.css";
 import callApi from "../../utils/methods";
 import Table from "../../components/Table/Table";
